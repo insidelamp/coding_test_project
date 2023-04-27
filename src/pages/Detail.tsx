@@ -18,14 +18,32 @@ function Detail({ setTitleNumber }: AppType) {
   return (
     <div className="DetailWrapper">
       {filterUser?.map((items) => (
-        <div key={items.userid}>
-          <div>{revDateFunc(items?.RevDate)}</div>
-          <div>이름{items?.name}</div>
-          <div>성별 {calculateAge(items?.patDob, "성별")}</div>
-          <div>나이{calculateAge(items?.patDob, "나이")}</div>
-          <div>주민번호 {items?.patDob}</div>
-          <div>전화번호 {items?.phone}</div>
-          <div>메모 {items?.memo}</div>
+        <div key={items.userid} className="DetailSpace">
+          <div className="DetailDate">{revDateFunc(items?.RevDate)}</div>
+          <div className="DetailContent">
+            <div>이름&nbsp;:</div>
+            <div>{items?.name}</div>
+          </div>
+          <div className="DetailContent">
+            <div>성별&nbsp;:</div>
+            <div> {calculateAge(items?.patDob, "성별")}</div>
+          </div>
+          <div className="DetailContent">
+            <div>나이&nbsp;:</div>
+            <div>{calculateAge(items?.patDob, "나이")}</div>
+          </div>
+          <div className="DetailContent">
+            <div>주민번호&nbsp;:</div>
+            <div>{items?.patDob}</div>
+          </div>
+          <div className="DetailContent">
+            <div>전화번호&nbsp;:</div>
+            <div>{items?.phone}</div>
+          </div>
+          <div className="DetailContent">
+            <div>메모&nbsp;:</div>
+            <div>{items?.memo}</div>
+          </div>
         </div>
       ))}
     </div>

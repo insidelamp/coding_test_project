@@ -5,3 +5,19 @@
   display: flex;
   flex-direction: column;
 }
+
+.DetailSpace {
+  padding: 20px;
+}
+.DetailDate {
+  font-size: 40px;
+  font-weight: 500;
+}
+.DetailContent {
+  margin: 20px 0px;
+  font-size: 30px;
+  display: flex;
+}
+.DetailContent > div {
+  margin: 0px 10px;
+}

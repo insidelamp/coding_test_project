@@ -17,7 +17,6 @@ function GuestFilter({ setFilterSame }: HomeType) {
     { value: "birthdate", name: "생년월일" },
   ];
 
-  console.log(filterData);
   const checkValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (optionValue == "") {
       setOptionValue("name");
@@ -27,7 +26,6 @@ function GuestFilter({ setFilterSame }: HomeType) {
   };
 
   const searchFunc = (e: React.FormEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value);
     if (getUserdata) {
       if (optionValue === "name") {
         setFilterData(
@@ -49,7 +47,6 @@ function GuestFilter({ setFilterSame }: HomeType) {
         );
       }
     }
-    console.log(e.currentTarget.value);
   };
 
   useEffect(() => {

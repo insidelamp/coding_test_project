@@ -29,12 +29,9 @@ function Guest({
   const notFilter = getUserdata?.filter(
     (items) => filterSame?.includes(items) == false
   );
-  const hapFilter = [filterSame, notFilter];
-  console.log(notFilter);
   const moveDetailFunc = (id: number) => {
     navigate(`/${id}`);
   };
-  console.log(filterSame);
 
   useEffect(() => {
     if (getUserdata) {
