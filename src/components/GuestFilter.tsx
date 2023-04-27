@@ -4,13 +4,10 @@ import { FaSearch } from "react-icons/fa";
 import { DataType } from "../reduxstore/slices/userSlice";
 import { calculateAge } from "../until";
 import { revDateFunc } from "../until";
+import "../styles/GuestFilter.css";
+import { HomeType } from "../pages/Home";
 
-interface OptionType {
-  value: string;
-  name: string;
-}
-
-function GuestFilter() {
+function GuestFilter({ setFilterSame }: HomeType) {
   const [optionValue, setOptionValue] = useState<string>("");
   const getUserdata = useAppSelector((state) => state.users?.users?.users);
   const [filterData, setFilterData] = useState<DataType[]>([]);
@@ -20,6 +17,7 @@ function GuestFilter() {
     { value: "birthdate", name: "생년월일" },
   ];
 
+  console.log(filterData);
   const checkValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (optionValue == "") {
       setOptionValue("name");
@@ -27,7 +25,6 @@ function GuestFilter() {
       setOptionValue(e.target.value);
     }
   };
-  console.log(optionValue);
 
   const searchFunc = (e: React.FormEvent<HTMLInputElement>) => {
     console.log(e.currentTarget.value);
@@ -54,43 +51,64 @@ function GuestFilter() {
     }
     console.log(e.currentTarget.value);
   };
+
   useEffect(() => {
     if (optionValue == "") {
       setOptionValue("name");
     }
-  }, []);
+    if (filterData) {
+      setFilterSame(filterData);
+    }
+  }, [filterData]);
 
   return (
-    <div>
-      <div>손님 검색 필터</div>
-      <div>
-        <select onChange={checkValue}>
+    <div className="GuestFilterWrapper">
+      <div className="GuestFilterTitle">손님 검색 필터</div>
+      <div className="GuestFilterSelectSpace">
+        <select className="GuestFilterSelectBox" onChange={checkValue}>
           {OPTIONS.map((item) => (
             <option key={item.value} value={item.value}>
               {item.name}
             </option>
           ))}
         </select>
-        <div>
-          <div>
+        <div className="GuestFilterInputSpace">
+          <div className="GuestFilterIcon">
             <FaSearch />
           </div>
-          <input onChange={searchFunc} />
+          <input className="GuestFilterInput" onChange={searchFunc} />
         </div>
       </div>
-      <div>
-        {filterData?.map((filterItems) => (
-          <div key={filterItems.userid}>
-            <div>{revDateFunc(filterItems?.RevDate)}</div>
-            <div>이름{filterItems?.name}</div>
-            <div>성별 {calculateAge(filterItems?.patDob, "성별")}</div>
-            <div>나이{calculateAge(filterItems?.patDob, "나이")}</div>
-            <div>주민번호 {filterItems?.patDob}</div>
-            <div>전화번호 {filterItems?.phone}</div>
-            <div>메모 {filterItems?.memo}</div>
+      {filterData?.map((filterItems) => (
+        <div
+          key={filterItems.userid}
+          className={
+            filterData != undefined
+              ? "FilterUserSpace FilterUserSpaceTrue"
+              : "FilterUserSpace"
+          }
+        >
+          <div className="FilterUserFlex">
+            <div className="FiterUserInformationSpace">
+              <div>{revDateFunc(filterItems?.RevDate)}</div>
+              <div>|&nbsp;&nbsp;{filterItems?.name}&nbsp;&nbsp;</div>
+              <div>
+                |&nbsp;&nbsp;
+                {calculateAge(filterItems?.patDob, "성별")}
+              </div>
+              <div>
+                |&nbsp;&nbsp;
+                {calculateAge(filterItems?.patDob, "나이")}
+              </div>
+              <div>|&nbsp;&nbsp; {filterItems?.patDob}</div>
+            </div>
+            <div className="FilterUserContent">
+              전화번호 {filterItems?.phone}
+            </div>
+            <div className="FilterUserContent">메모 {filterItems?.memo}</div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }

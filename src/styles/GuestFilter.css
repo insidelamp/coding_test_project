@@ -1,0 +1,73 @@
+.GuestFilterWrapper {
+  width: 620px;
+  height: 100%;
+}
+
+.GuestFilterTitle {
+  margin: 10px 0px 0px 10px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.GuestFilterSelectSpace {
+  display: flex;
+  width: 95%;
+  height: 40px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.GuestFilterSelectBox {
+  width: 45%;
+  height: 40px;
+}
+
+.GuestFilterInputSpace {
+  position: relative;
+  width: 50%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.GuestFilterInput {
+  width: 60%;
+  height: 30px;
+  border-radius: 50px;
+  padding-left: 30px;
+}
+.GuestFilterIcon {
+  position: absolute;
+  top: 10px;
+  left: 18%;
+}
+
+.FilterUserSpace {
+  border: 1px solid black;
+  width: 600px;
+  height: 150px;
+  display: flex;
+  margin: 10px 0px 10px 15px;
+}
+.FilterUserSpaceTrue {
+  border: 1px solid gold;
+  width: 600px;
+  height: 150px;
+  display: flex;
+  margin: 10px 0px 10px 15px;
+}
+
+.FilterUserFlex {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.FiterUserInformationSpace {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 20px;
+}
+.FilterUserContent {
+  margin: 10px 20px;
+}

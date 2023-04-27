@@ -4,6 +4,7 @@ import { useAppSelector } from "../reduxstore/hooks";
 
 import { calculateAge } from "../until";
 import { HomeType } from "../pages/Home";
+import { useEffect } from "react";
 export interface DataType {
   RevDate: string;
   memo: string;
@@ -17,14 +18,29 @@ export interface StateType {
   [users: string]: DataType[];
 }
 
-function Guest({ dateState, setDateState, handleChangeDate }: HomeType) {
+function Guest({
+  dateState,
+  handleChangeDate,
+  filterSame,
+  setFilterSame,
+}: HomeType) {
   const navigate = useNavigate();
   const getUserdata = useAppSelector((state) => state.users?.users?.users);
-
+  const notFilter = getUserdata?.filter(
+    (items) => filterSame?.includes(items) == false
+  );
+  const hapFilter = [filterSame, notFilter];
+  console.log(notFilter);
   const moveDetailFunc = (id: number) => {
     navigate(`/${id}`);
   };
+  console.log(filterSame);
 
+  useEffect(() => {
+    if (getUserdata) {
+      setFilterSame(getUserdata);
+    }
+  }, [getUserdata]);
   return (
     <div className="GuestWrapper">
       <div className="GuestHeader">
@@ -33,7 +49,61 @@ function Guest({ dateState, setDateState, handleChangeDate }: HomeType) {
         </div>
         <input type="date" value={dateState} onChange={handleChangeDate} />
       </div>
-      {getUserdata?.map((item) => (
+      <>
+        {filterSame && notFilter ? (
+          <>
+            {filterSame.map((item) => (
+              <div
+                key={item?.userid}
+                className="GuestContentsSpace GuestContentsSpaceB"
+                onClick={() => moveDetailFunc(item.userid)}
+              >
+                <div className="GuestInformation">
+                  <div>{item?.name}</div>
+                  <div>|&nbsp;&nbsp;{calculateAge(item?.patDob, "전체")}</div>
+                  <div>|&nbsp;&nbsp;{item?.patDob} </div>
+                  <div>|&nbsp;&nbsp;{item?.phone}</div>
+                </div>
+                <div className="GuestContent">{item?.memo}</div>
+              </div>
+            ))}
+            {notFilter.map((items) => (
+              <div
+                key={items?.userid}
+                className="GuestContentsSpace"
+                onClick={() => moveDetailFunc(items.userid)}
+              >
+                <div className="GuestInformation">
+                  <div>{items?.name}</div>
+                  <div>|&nbsp;&nbsp;{calculateAge(items?.patDob, "전체")}</div>
+                  <div>|&nbsp;&nbsp;{items?.patDob} </div>
+                  <div>|&nbsp;&nbsp;{items?.phone}</div>
+                </div>
+                <div className="GuestContent">{items?.memo}</div>
+              </div>
+            ))}
+          </>
+        ) : (
+          <>
+            {getUserdata?.map((item) => (
+              <div
+                key={item?.userid}
+                className="GuestContentsSpace"
+                onClick={() => moveDetailFunc(item.userid)}
+              >
+                <div className="GuestInformation">
+                  <div>{item?.name}</div>
+                  <div>|&nbsp;&nbsp;{calculateAge(item?.patDob, "전체")}</div>
+                  <div>|&nbsp;&nbsp;{item?.patDob} </div>
+                  <div>|&nbsp;&nbsp;{item?.phone}</div>
+                </div>
+                <div className="GuestContent">{item?.memo}</div>
+              </div>
+            ))}
+          </>
+        )}
+      </>
+      {/* {getUserdata?.map((item) => (
         <div
           key={item?.userid}
           className="GuestContentsSpace"
@@ -47,7 +117,7 @@ function Guest({ dateState, setDateState, handleChangeDate }: HomeType) {
           </div>
           <div className="GuestContent">{item?.memo}</div>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }
