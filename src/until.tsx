@@ -25,3 +25,13 @@ export const calculateAge = (patDob: string, inputData: string) => {
       return gender;
   }
 };
+
+export const revDateFunc = (RevDate: string) => {
+  let answer = "";
+  let year = RevDate.split("").slice(0, 4).join("");
+  let month = RevDate.split("").slice(5, 6).join("");
+  let day = RevDate.split("").slice(6).join("");
+  console.log(year + "년" + month + "월" + day + "일");
+  answer = year + " 년 " + month + " 월 " + day + " 일 ";
+  return answer;
+};

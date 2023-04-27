@@ -77,7 +77,7 @@ function Memo() {
     localStorage.setItem("message", JSON.stringify(filterData));
     setCount(Date.now());
   };
-  const onChangeUpdateFunc = (e: any) => {
+  const onChangeUpdateFunc = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUpDateMessage(e.target.value);
   };
 

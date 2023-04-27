@@ -4,6 +4,7 @@ import { AppType } from "../App";
 import "../styles/Detail.css";
 import { useAppSelector } from "../reduxstore/hooks";
 import { calculateAge } from "../until";
+import { revDateFunc } from "../until";
 
 function Detail({ setTitleNumber }: AppType) {
   const getUserdata = useAppSelector((state) => state.users?.users?.users);
@@ -13,15 +14,7 @@ function Detail({ setTitleNumber }: AppType) {
   useEffect(() => {
     setTitleNumber(1);
   }, []);
-  const revDateFunc = (RevDate: string) => {
-    let answer = "";
-    let year = RevDate.split("").slice(0, 4).join("");
-    let month = RevDate.split("").slice(5, 6).join("");
-    let day = RevDate.split("").slice(6).join("");
-    console.log(year + "년" + month + "월" + day + "일");
-    answer = year + " 년 " + month + " 월 " + day + " 일 ";
-    return answer;
-  };
+
   return (
     <div className="DetailWrapper">
       {filterUser?.map((items) => (
