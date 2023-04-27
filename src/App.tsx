@@ -7,7 +7,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 export interface AppType {
-  titleNumber?: number;
   setTitleNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 function App() {
@@ -23,12 +22,7 @@ function App() {
 
         <Header />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Home titleNumber={titleNumber} setTitleNumber={setTitleNumber} />
-            }
-          />
+          <Route path="/" element={<Home setTitleNumber={setTitleNumber} />} />
           <Route
             path="/:id"
             element={<Detail setTitleNumber={setTitleNumber} />}

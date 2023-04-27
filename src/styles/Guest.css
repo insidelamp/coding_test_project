@@ -1,0 +1,43 @@
+.GuestWrapper {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.GuestHeader {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.GuestPersons {
+  margin: 0px 100px 0px 30px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.GuestContentsSpace {
+  margin-top: 20px;
+  width: 550px;
+  height: 70px;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 10px;
+}
+
+.GuestInformation {
+  font-size: 20px;
+  display: flex;
+}
+.GuestInformation > div {
+  margin-right: 10px;
+}
+.GuestContent {
+  font-size: 20px;
+}

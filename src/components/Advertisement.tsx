@@ -1,25 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../styles/Advertisement.css";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
-
-interface DataType {
-  adid?: number;
-  imageLink: string;
-  title: string;
-}
-interface Fetchtype {
-  [ads: string]: DataType[];
-}
+import { getImgs } from "../reduxstore/slices/userSlice";
+import { useAppSelector, useAppDispatch } from "../reduxstore/hooks";
 
 function Advertisement() {
-  const [fetchData, setFetchData] = useState<Fetchtype>({});
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const slideRef = useRef<HTMLInputElement | null>(null);
+  const getImgdata = useAppSelector((state) => state?.users?.imgs?.ads);
+
   useEffect(() => {
     setTimeout(() => {
       setCurrentIndex(currentIndex + 1);
-      if (currentIndex === fetchData?.ads?.length - 1) {
-        setCurrentIndex(0);
+      if (getImgdata != undefined) {
+        if (currentIndex === getImgdata.length - 1) {
+          setCurrentIndex(0);
+        }
       }
     }, 3000);
     if (slideRef.current) {
@@ -27,15 +23,10 @@ function Advertisement() {
       slideRef.current.style.transform = `translateX(-${currentIndex}00%)`;
     }
   }, [currentIndex]);
-  useEffect(() => {
-    fetch(`http://34.22.82.239:8080/getAdList`)
-      .then((res) => res.json())
-      .then((data) => setFetchData(data));
-  }, []);
 
   return (
     <div className="AdvertisementWrapper" ref={slideRef}>
-      {fetchData?.ads?.map((item) => (
+      {getImgdata?.map((item) => (
         <div key={item?.adid} className="AdvertisementContents">
           <img className="AdvertisementImg" src={item?.imageLink} />
           <div className="AdvertisementTitle">{item?.title}</div>
