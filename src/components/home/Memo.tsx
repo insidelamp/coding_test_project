@@ -40,7 +40,11 @@ function Memo() {
     setCount(Date.now());
   };
 
-  const deleteFunc = (id: number) => {
+  const deleteFunc = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    id: number
+  ) => {
+    e.stopPropagation();
     localData = memoData.filter((el) => el.id !== id);
     localStorage.setItem("message", JSON.stringify(localData));
     setCount(Date.now());
@@ -171,7 +175,7 @@ function Memo() {
                 <div>{item.message}</div>
                 <div
                   className="MemoUpdateBtn"
-                  onClick={() => deleteFunc(item.id)}
+                  onClick={(e) => deleteFunc(e, item.id)}
                 >
                   X
                 </div>
