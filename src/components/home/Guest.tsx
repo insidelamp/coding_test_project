@@ -99,21 +99,6 @@ function Guest({
           </>
         )}
       </>
-      {/* {getUserdata?.map((item) => (
-        <div
-          key={item?.userid}
-          className="GuestContentsSpace"
-          onClick={() => moveDetailFunc(item.userid)}
-        >
-          <div className="GuestInformation">
-            <div>{item?.name}</div>
-            <div>|&nbsp;&nbsp;{calculateAge(item?.patDob, "전체")}</div>
-            <div>|&nbsp;&nbsp;{item?.patDob} </div>
-            <div>|&nbsp;&nbsp;{item?.phone}</div>
-          </div>
-          <div className="GuestContent">{item?.memo}</div>
-        </div>
-      ))} */}
     </div>
   );
 }

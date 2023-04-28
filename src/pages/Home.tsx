@@ -5,7 +5,7 @@ import Guest from "../components/home/Guest";
 import GuestFilter from "../components/home/GuestFilter";
 import "../styles/Home.css";
 import { AppType } from "../App";
-import { useAppSelector, useAppDispatch } from "../reduxstore/hooks";
+import { useAppDispatch } from "../reduxstore/hooks";
 import { getUsers, getImgs } from "../reduxstore/slices/userSlice";
 import { DataType } from "../reduxstore/slices/userSlice";
 
