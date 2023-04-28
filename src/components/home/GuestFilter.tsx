@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useAppSelector } from "../reduxstore/hooks";
 import { FaSearch } from "react-icons/fa";
-import { DataType } from "../reduxstore/slices/userSlice";
-import { calculateAge } from "../until";
-import { revDateFunc } from "../until";
-import "../styles/GuestFilter.css";
-import { HomeType } from "../pages/Home";
+import "../../styles/GuestFilter.css";
+import { useAppSelector } from "../../reduxstore/hooks";
+import { calculateAge } from "../../until";
+import { HomeType } from "../../pages/Home";
+import { revDateFunc } from "../../until";
+import { DataType } from "../../reduxstore/slices/userSlice";
 
 function GuestFilter({ setFilterSame }: HomeType) {
   const [optionValue, setOptionValue] = useState<string>("");

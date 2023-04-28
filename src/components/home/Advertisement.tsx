@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import "../styles/Advertisement.css";
+import "../../styles/Advertisement.css";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
-import { getImgs } from "../reduxstore/slices/userSlice";
-import { useAppSelector, useAppDispatch } from "../reduxstore/hooks";
+import { useAppSelector } from "../../reduxstore/hooks";
 
 function Advertisement() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);

@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import "../styles/Guest.css";
-import { useAppSelector } from "../reduxstore/hooks";
-
-import { calculateAge } from "../until";
-import { HomeType } from "../pages/Home";
+import "../../styles/Guest.css";
+import { useAppSelector } from "../../reduxstore/hooks";
+import { calculateAge } from "../../until";
+import { HomeType } from "../../pages/Home";
 import { useEffect } from "react";
 export interface DataType {
   RevDate: string;

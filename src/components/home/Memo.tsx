@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Memo.css";
+import "../../styles/Memo.css";
 
 interface MemoArrayType {
   message: string;

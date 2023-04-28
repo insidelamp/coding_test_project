@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import "./styles/App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Detail from "./pages/Detail";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 export interface AppType {
   setTitleNumber: React.Dispatch<React.SetStateAction<number>>;
 }
+
+const HomePage = lazy(async () => await import("./pages/Home"));
+const DetailPage = lazy(async () => await import("./pages/Detail"));
+
 function App() {
   const [titleNumber, setTitleNumber] = useState<number>(0);
   return (
@@ -19,16 +21,22 @@ function App() {
         ) : (
           <div className="AppTitle"> 상세 페이지</div>
         )}
-
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home setTitleNumber={setTitleNumber} />} />
-          <Route
-            path="/:id"
-            element={<Detail setTitleNumber={setTitleNumber} />}
-          />
-        </Routes>
-        {titleNumber === 1 ? <Footer /> : null}
+        <Suspense
+          fallback={<div className="NotData">잠시만 기다려주세요!</div>}
+        >
+          <Header />
+          <Routes>
+            <Route
+              path="/"
+              element={<HomePage setTitleNumber={setTitleNumber} />}
+            />
+            <Route
+              path="/:id"
+              element={<DetailPage setTitleNumber={setTitleNumber} />}
+            />
+          </Routes>
+          {titleNumber === 1 ? <Footer /> : null}
+        </Suspense>
       </div>
     </div>
   );

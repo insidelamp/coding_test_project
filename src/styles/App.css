@@ -19,3 +19,12 @@
   font-size: 50px;
   color: #2d3dce;
 }
+.NotData {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bolder;
+}

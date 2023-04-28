@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Advertisement from "../components/Advertisement";
-import Memo from "../components/Memo";
-import Guest from "../components/Guest";
-import GuestFilter from "../components/GuestFilter";
+import Advertisement from "../components/home/Advertisement";
+import Memo from "../components/home/Memo";
+import Guest from "../components/home/Guest";
+import GuestFilter from "../components/home/GuestFilter";
 import "../styles/Home.css";
 import { AppType } from "../App";
 import { useAppSelector, useAppDispatch } from "../reduxstore/hooks";
